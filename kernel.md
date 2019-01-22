@@ -50701,6 +50701,37 @@ plt.legend()
     <matplotlib.legend.Legend at 0x7f3d406ae9e8>
 
 
+```python
+image = cv2.imread('../input/nonsegmentedv2/Cleavers/101.png')
+output = image.copy()
+image = cv2.resize(image, (64,64))
+image = image.astype('float') / 255
+image = image.reshape((1, image.shape[0], image.shape[1], image.shape[2]))
+image.shape
+```
+
+
+
+
+    (1, 64, 64, 3)
+
+
+
+
+```python
+preds = model.predict(image)
+i = preds.argmax(axis=1)[0]
+label = lb.classes_[i]
+print(preds, label)
+```
+
+    [[1.2481787e-05 5.1420987e-02 9.4668233e-01 2.7900926e-10 9.6014928e-04
+		4.4761045e-04 2.4746012e-07 3.6552906e-04 7.6459479e-09 2.9243852e-08
+		2.0534584e-05 9.0114059e-05]] Cleavers
+    
+
+	
+
 
 
 ![png](kernel_files/kernel_29_2.png)
